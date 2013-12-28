@@ -1,37 +1,23 @@
-phpInsight - Sentiment Analysis in PHP
-=========
----------
+Files Used Directly in manual code excluding the plugins
 
-**v1.2**
-
-phpInsight is a sentiment classifier. 
-It uses a dictionary of words that are categorised as positive, negative or neutral and a naive bayes algorithm to calculate sentiment. 
-To improve accuracy phpInsight removes 'noise' words. 
-
-**v1.1 Updates**
-
-Improvements courtesy of Mark-H (https://github.com/Mark-H/) they can been seen on his Tweetalyzer project 
-(https://github.com/Mark-H/Tweetalyzer)
-
-    Improvements
-    -Load data from a serialized php file instead of the database
-
-**1.2 Bug Fix**
-
-Error with how the positive dictionary was serialized fixed.
+Home.html : Landing Page
+Engine.php : The file containg functions for the sentimental engine as well as ID generation
+testtwitter.php:The page which fetches the tweets and feed them in engine
+upload_file.php:The page that uploads and process the data of an excel sheet
+facetest.php: The page which fetches messages of a page
+getcomments.php: The page which gets the comments for a post
+get_data.php:The page which gets the processsed data from tables and passes the data to result.html for graph generation
+result.html : The page which shows result . 
 
 
-    Copyright (C) 2012  James Hennessey
+FLOW:
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+home.html->[FB]->facetest.php->[subject ID/name]->select a message->getcomments.php->result.html->get_data.php
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+home.html->[twitter]->testtwitter.php->[search]->result.html->get_data.php
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>
+home.html->[excel]->upload_filr.php->result.html->get_data.php
+
+
+// Would finalize for spice in sometime.
+
