@@ -10,6 +10,7 @@
 	      
 	    // Set a callback to run when the Google Visualization API is loaded.
 	    google.setOnLoadCallback(drawChart);
+	    google.setOnLoadCallback(drawNewChart);
 	      
 	    function drawChart() {
 	      var jsonData = $.ajax({
@@ -25,6 +26,22 @@
 	      var chart = new google.visualization.PieChart(document.getElementById('toresult'));
 	      chart.draw(data, {width: 400, height: 240});
 	    }
+	    
+	    
+	    function drawNewChart() {
+	      var jsonData = $.ajax({
+	          url: "get_data.php",
+	          dataType:"json",
+	          async: false
+	          }).responseText;
+	          
+	      // Create our data table out of JSON data loaded from server.
+	      var data = new google.visualization.DataTable(jsonData);
+	
+	      // Instantiate and draw our chart, passing in some options.
+	      var chart = new google.visualization.PieChart(document.getElementById('timeline'));
+	      chart.draw(data, {width: 400, height: 240});
+	    }
 	
 	    </script>
    
@@ -36,7 +53,7 @@
 		<div id="toresult">
 			
 		</div>
-		<div class="timeline">
+		<div id="timeline">
 			
 		</div>
 	</body>

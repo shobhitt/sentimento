@@ -1,11 +1,15 @@
 <?php
+session_start();
 try
 {
     $ch = curl_init();
     // Now set some options (most are optional)
  	//var_dump($ch);
     // Set URL to download
-    curl_setopt($ch, CURLOPT_URL,'http://spice.schneider-electric.com/a/users/1234/subject_messages.xml?params[subject_id]=123&&client_key=tibco&auth_token=o1WCdbfst8IFWUBq5sXeM6ENokN9JTeYgar/tH1KKqE=');
+    $id=$_POST['sesa'];
+	$_SESSION['sesa']=$id;
+	var_dump($id);
+    curl_setopt($ch, CURLOPT_URL,'https://spice.schneider-electric.com/a/users/find_by_login.xml?params[login]='.$id.'&client_key=tibco&auth_token=o1WCdbfst8IFWUBq5sXeM6ENokN9JTeYgar/tH1KKqE=');
  //	curl_setopt($ch, CURLOPT_URL,'http://google.com/');
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
  
@@ -35,21 +39,42 @@ try
     //curl_close($ch);
 	
 	$xml = simplexml_load_string($output); 
+	$userId=$xml->id;
+	
+	//http://tibbr-host/a/users/user-id/subscriptions.xml
+	
+	
+	curl_setopt($ch, CURLOPT_URL,'https://spice.schneider-electric.com/a/users/'.$userId.'/subscriptions.xml?client_key=tibco&auth_token=o1WCdbfst8IFWUBq5sXeM6ENokN9JTeYgar/tH1KKqE=&&params[user_id]='.$userId.'&params[inherited]=true&params[per_page]=20');
+ 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $output = curl_exec($ch);
+	$xml = simplexml_load_string($output);
+	//var_dump($xml);
+	echo "<form action='get_messages.php' method='post'>";
+	echo "<select name='subject'>";
+	foreach ($xml->subject as $messages){
+			 echo '<option value=\''.$messages->id.'\'>'.$messages->name.'</option>';
+  		 // foreach($messages->messages as $comment){
+  				 // var_dump($comment->message->content);
+  			// var_dump($comment->content);
+	 }
+	echo "</select><input type='submit'/></form>";
+	
 	//print_r($xml->message[0]->content); 
-	$_SESSION['xmltext']=$xml;
-	
-	
-		foreach ($xml->message as $messages){
-			echo $messages->content;
-  		// foreach($messages->messages as $comment){
-  				// var_dump($comment->message->content);
-  			// //var_dump($comment->content);
-  	
-  	 	
-		
-	}	 
-    //var_dump( $output);
-	
+	// $_SESSION['xmltext']=$xml;
+// 	
+// 	
+		// foreach ($xml->message as $messages){
+			// echo $messages->content;
+  		// // foreach($messages->messages as $comment){
+  				// // var_dump($comment->message->content);
+  			// // //var_dump($comment->content);
+//   	
+//   	 	
+// 		
+	// }	 
+
 	if (FALSE === $output)
 	{
     	echo "madard";

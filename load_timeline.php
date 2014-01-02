@@ -1,7 +1,4 @@
 <?php
-
-session_start();
-
 $con=mysqli_connect("localhost","root","","sentimento");
 if (mysqli_connect_errno())
 {
@@ -10,6 +7,7 @@ if (mysqli_connect_errno())
 
 $request_id=$_SESSION['request_id'];
 $type=$_SESSION['type'];
+
 if($type==='excel'){
 	$result = mysqli_query($con,"SELECT * FROM excel_output where request_id='".$_SESSION['request_id']."';");	
 	$positive=0;
@@ -33,11 +31,11 @@ if($type==='excel'){
 	while($row = mysqli_fetch_array($result))
 	{
 		  	if($row['sentiment']==2){
-		  		$positive=$positive+1+$row['retweet_count'];
+		  		$positive=$positive+1;
 		  	}elseif($row['sentiment']==0){
-		  		$negative=$negative+1+$row['retweet_count'];
+		  		$negative=$negative+1;
 		  	}else{
-		  		$neutral=$neutral+1+$row['retweet_count'];
+		  		$neutral=$neutral+1;
 		  	}
 	}
 }elseif($type==='fb'){
@@ -48,26 +46,26 @@ if($type==='excel'){
 	while($row = mysqli_fetch_array($result))
 	{
 		  	if($row['sentiment']==2){
-		  		$positive=$positive+1+$row['like_count'];
+		  		$positive=$positive+1;
 		  	}elseif($row['sentiment']==0){
-		  		$negative=$negative+1+$row['like_count'];
+		  		$negative=$negative+1;
 		  	}else{
-		  		$neutral=$neutral+1+$row['like_count'];
+		  		$neutral=$neutral+1;
 		  	}
 	}
 }else{
-	$result = mysqli_query($con,"SELECT * FROM spice_output where request_id='".$_SESSION['request_id']."';");	
+	$result = mysqli_query($con,"SELECT * FROM excel_output where request_id='".$_SESSION['request_id']."';");	
 	$positive=0;
 	$negative=0;
 	$neutral=0;
 	while($row = mysqli_fetch_array($result))
 	{
 		  	if($row['sentiment']==2){
-		  		$positive=$positive+1+$row['like_count'];
+		  		$positive=$positive+1;
 		  	}elseif($row['sentiment']==0){
-		  		$negative=$negative+1+$row['like_count'];
+		  		$negative=$negative+1;
 		  	}else{
-		  		$neutral=$neutral+1+$row['like_count'];
+		  		$neutral=$neutral+1;
 		  	}
 	}
 }
@@ -98,5 +96,7 @@ if($type==='excel'){
 	
 	echo json_encode($data);
 	//vardump(data);
+
+?>
 
 ?>

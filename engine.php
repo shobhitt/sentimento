@@ -39,7 +39,7 @@
 			elseif ($method==='fb') {
 				$sql="INSERT INTO facebook_output VALUES ('".$row['id']."','".addslashes($row['text'])."','".$ndate."',".$row['like_count'].",'".$row['request_id']."',".$type.")";	
 			}elseif($method==='spice'){
-				$sql="INSERT INTO spice_output VALUES (".$row['id'].",'".addslashes($row['text'])."',".$date.",".$row['retweet_count'].",1,".$type.")";
+				$sql="INSERT INTO spice_output VALUES ('".$row['id']."','".addslashes($row['text'])."','".$ndate."',".$row['like_count'].",'".$row['request_id']."',".$type.")";
 			}elseif($method==='excel'){
 				$sql="INSERT INTO excel_output VALUES ('".$row['id']."','".addslashes($row['text'])."','".$ndate."','".$row['request_id']."',".$type.")";
 			}
