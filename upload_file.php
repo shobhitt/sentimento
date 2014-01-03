@@ -10,6 +10,7 @@ $con=mysqli_connect("localhost","root","","sentimento");
 move_uploaded_file($_FILES["file"]["tmp_name"], $_FILES["file"]["name"] );
 $_SESSION['request_id']=generateId('rq');
 $_SESSION['type']='excel';
+
 try
 {
 	$Spreadsheet = new SpreadsheetReader($_FILES["file"]["name"]);
@@ -49,7 +50,7 @@ try
 		echo $E -> getMessage();
 }
 
-header("Location: result.html");
+header("Location: result.php");
 
 
 ?>

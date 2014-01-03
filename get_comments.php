@@ -4,7 +4,7 @@
     session_start();
 	$_SESSION['request_id']=generateId('rq');
 	$_SESSION['type']='spice';
-	$con=mysqli_connect("localhost","root","","sentimento");
+	$con=mysqli_connect("mysqlsdb.co8hm2var4k9.eu-west-1.rds.amazonaws.com:3306","dep2kkpyk4s","7isEkD3bRUFa","dep2kkpyk4s");
 	if (mysqli_connect_errno())
 	  {
 	  echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -13,11 +13,15 @@
 	//var_dump($output);
 	//var_dump($_POST['message']);
 	$xml = simplexml_load_string($output);
-	var_dump($_POST['message']);
+//	var_dump($_GET['message']);
 	foreach ($xml->message as $messages){
 			
-			if($messages->id==$_POST['message']){
+			if($messages->id==$_GET['message']){
 			//	echo "message mein aa gaya ";
+				$spicemessage=$messages->content;
+				
+				$_SESSION['message']=(string)$spicemessage;
+				 //var_dump($messages->content);
 				 foreach($messages->messages as $comment){
 				 	foreach($comment->message as $message){
 						$text=addslashes($message->content);
@@ -44,9 +48,14 @@
 	  // echo $row['text'] . " " . $row['request_id'];
 	  // echo "<br>";
 	  // }
-	
-	engine($result,'spice');
-	header("Location: result.html");
+	 
+	//echo mysql_num_rows($result);
+	if(mysqli_affected_rows( $con )!=0){
+		engine($result,'spice');
+		header("Location: result.php");
+	}else{
+		echo "The message does not have any comments";
+	}
 	
 	
 ?>

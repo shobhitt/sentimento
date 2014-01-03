@@ -155,8 +155,18 @@
 			<div>
 				<?php 
 				session_start();
-				echo $_SESSION['type'];
+				if($_SESSION['type']='spice'){
+					echo $_SESSION['type'].$_SESSION['message'];
+				}
+				elseif($_SESSION['type']='fb'){	
+					echo $_SESSION['type'];
+				}elseif($_SESSION['type']='excel'){
+					echo $_SESSION['type'];
+				}
+				else{
+					echo $_SESSION['type'];				}
 				?> Analysis
+				
 			</div>
 		<div style="text-align: center;">
 		<div id="toresult">
@@ -165,5 +175,10 @@
 		<div id="timeline">
 			
 		</div>
+		</div>
+		<div class="footer">
+	            <p>Copyright (c) Green Hornets</p>
+	    </div>
+
 	</body>
 </html>

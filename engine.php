@@ -3,10 +3,7 @@
 	
 	
    function engine($data,$method){
-		 	echo "indide";
 		 $sentiment = new Sentiment(); 
-		// foreach( $data as $text)  		
-		// $scores = $sentiment->score($text);
 		$con=mysqli_connect("localhost","root","","sentimento");
 		if (mysqli_connect_errno())
 		  {
@@ -44,7 +41,6 @@
 				$sql="INSERT INTO excel_output VALUES ('".$row['id']."','".addslashes($row['text'])."','".$ndate."','".$row['request_id']."',".$type.")";
 			}
 			
-			echo $sql;
 			if (!mysqli_query($con,$sql))
 			  {
 			  die('Error: ' . mysqli_error($con));
@@ -58,17 +54,31 @@
 
 
 	function generateId($type){
-		$id=0;	
+		$id=0;
+		$random_id_length = 10; 
+
+//generate a random id encrypt it and store it in $rnd_id 
+$rnd_id = crypt(uniqid(rand(),1)); 
+
+//to remove any slashes that might have come 
+$rnd_id = strip_tags(stripslashes($rnd_id)); 
+
+//Removing any . or / and reversing the string 
+$rnd_id = str_replace(".","",$rnd_id); 
+$rnd_id = strrev(str_replace("/","",$rnd_id)); 
+
+//finally I take the first 10 characters from the $rnd_id 
+$rnd_id = substr($rnd_id,0,$random_id_length); 	
 		if($type==='fb'){
-			$id='fb'.uniqid();
+			$id='fb'.$rnd_id;
 		}elseif($type==='twitter'){
-			$id='tw'.uniqid();
+			$id='tw'.$rnd_id;
 		}elseif($type==='excel'){
-			$id='ex'.uniqid();
+			$id='ex'.$rnd_id;
 		}elseif($type==='sp'){
-			$id='sp'.uniqid();
+			$id='sp'.$rnd_id;
 		}else{
-			$id='rq'.uniqid();
+			$id='rq'.$rnd_id;
 		}
 		
 		return $id;
