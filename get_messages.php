@@ -25,6 +25,7 @@
 			body{
 				margin: 0px;
 				padding: 0px;
+				color:#777777;
 			}
 			
 			.header{
@@ -78,17 +79,22 @@
 			}
 			
 			table{
-				padding: 10px;
-				border: 1px solid #ffffff;
+				/*padding: 10px;*/
+				
+				font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;				
 				
 			}
 			tr{
 				margin: 2px;
 				background: #eeeeee;
 				padding: 10px;
+				font-size: 15px;
 			}
 			td{
 				padding:10px;
+			}
+			.row0{
+				background:#ffffff;
 			}
 		</style>
 	</head>
@@ -105,8 +111,11 @@
 			</div>
 		</div>
 		<div class="maincontent">
-			<div>
-				Spice Analysis
+			<div style="width:100%;text-align: center;">
+				<p style="font-size: 25px;">Spice Analysis</p>
+			</div>
+			<div style="width:100%;text-align: center;">
+				<p style="font-size: 20px;">Select the post</p>
 			</div>
 		<div style="text-align: center;">
 			<table >
@@ -130,13 +139,16 @@
 	
 	//echo "<form action='get_comments.php' method='post'>";
 	//echo " <select name='message'>";
+	$i=0;
 	foreach ($xml->message as $messages){
 		//echo "<option value='".$messages->id.'\'>'.$messages->content.'</option>';
 		 // foreach($messages->messages as $comment){
 			 // var_dump($comment->message->content);
 			// var_dump($comment->content);
 		//}
-		echo "<tr><td><a href='get_comments.php?message=$messages->id'>$messages->content</a></td></tr>";
+		$a=$i%2;
+		$i=$i+1;
+		echo "<tr class='row$a'><td><a href='get_comments.php?message=$messages->id' style='color:#777777;'>$messages->content</a></td></tr>";
 	}	 
 	//echo "</select><input type='submit'></form>";
 	

@@ -1,7 +1,6 @@
 <?php
 	require_once('TwitterAPIExchange.php');
     require_once('engine.php');
-    
     $settings = array(
 	    'oauth_access_token' => "86331448-LW6zu086VLfB3HHNtFDGZhYyF2nhrhaC02kFw2viT",
 	    'oauth_access_token_secret' => "bWtRlRzLiRunVavkBM1X6rFcatvZ03VWhH6DdfFbf859a",
@@ -13,9 +12,9 @@
 	$_SESSION['request_id']=generateId('rq');
 	$_SESSION['type']='twitter';
 	
-	$con=mysqli_connect("localhost","root","","sentimento");
-
-	// Check connection
+	//$con=mysqli_connect("localhost","root","","sentimento");
+	$con=mysqli_connect("ec2-23-21-211-172.compute-1.amazonaws.com","sentdb","sentdb","sentimento");
+// Check connection
 	if (mysqli_connect_errno())
 	  {
 	  echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -23,15 +22,53 @@
 	else{
 		echo "connected";
 	}
-	
 	$search=$_GET['search'];
-	$_SESSION['search']=$_GET['search'];
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
 	$getfield = '?q='.$search.'&result_type=mixed&count=100';
 	$requestMethod = 'GET';
 	$twitter = new TwitterAPIExchange($settings);
 	
 	$data=json_decode($twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest(),true);
+	//$data=$twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();
+//	var_dump($data);
+	//	$data=$twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();
+//	var_dump($twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest());    
+//	var_dump($data['statuses']);
+// 
+// <?php
+	// require_once('TwitterAPIExchange.php');
+    // require_once('engine.php');
+//     
+    // $settings = array(
+	    // 'oauth_access_token' => "86331448-WCeaAkt8BjFHB8JtsBUC6tU0BCA2QOTecTqZHNIvE",
+	    // 'oauth_access_token_secret' => "rlQfdv7N22uIOy9cpFpq9L9YDaxnKVoh8YT62JDlce779",
+	    // 'consumer_key' => "UyvaO6JWsmNkwreIW1TXKQ",
+	    // 'consumer_secret' => "vlVoxISvqf1WT5vKapSuXDmfh4iSOpVDbqjAJGvFXD0"
+	// );
+// 	
+	// session_start();
+	// $_SESSION['request_id']=generateId('rq');
+	// $_SESSION['type']='twitter';
+// 	
+	// $con=mysqli_connect("localhost","root","","sentimento");
+// 
+	// // Check connection
+	// if (mysqli_connect_errno())
+	  // {
+	  // echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	  // }
+// 	
+	// $search=$_GET['search'];
+	// $_SESSION['search']=$_GET['search'];
+	// $url = 'https://api.twitter.com/1.1/search/tweets.json';
+	// $getfield = '?q='.$search.'&result_type=mixed&count=100';
+	// var_dump($getfield);
+	// $requestMethod = 'GET';
+	// $twitter = new TwitterAPIExchange($settings);
+// 	
+	// //$data=json_decode($twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest(),true);
+	// $data=($twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest());
+	// var_dump($data);
 //	$data=$twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();
 //	var_dump($twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest());    
 //	var_dump($data['statuses']);
@@ -55,8 +92,9 @@
 		
 	}	 
 	$result = mysqli_query($con,"SELECT * FROM twitter_input where request_id='".$_SESSION['request_id']."';");
+	mysqli_close($con);
 	engine($result,'twitter');
-	mysql_close($con);
+	
 	header("Location: result.php");
 	 
 ?>

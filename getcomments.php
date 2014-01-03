@@ -3,8 +3,8 @@
 	require_once('engine.php');
 	session_start();
 	
-	$con=mysqli_connect("mysqlsdb.co8hm2var4k9.eu-west-1.rds.amazonaws.com","dep2kkpyk4s","7isEkD3bRUFa","dep2kkpyk4s");
-	
+	//$con=mysqli_connect("localhost","root","","sentimento");
+	$con=mysqli_connect("ec2-23-21-211-172.compute-1.amazonaws.com","sentdb","sentdb","sentimento");
 	
 	// Check connection
 	if (mysqli_connect_errno())
@@ -27,13 +27,13 @@
 
 	  $facebook = new Facebook($config);
 	  $messageid=$_GET['messageid'];
-	  $url="$messageid?fields=comments.limit(100)";
+	  $url="$messageid?fields=comments.limit(100),message";
 	  
   
   	$ret = $facebook->api($url);
-
+		$_SESSION['message']=(string)$ret['message'];
 	foreach ($ret['comments']['data'] as $comment){
-	  	$_SESSION['message']=(string)$comment['message'];
+	  	
 	  	$time=date($comment['created_time']);
 	  	$likes=$comment['like_count'];
 		$message=addslashes($comment['message']);
@@ -57,8 +57,9 @@
 	  // echo $row['text'] . " " . $row['request_id'];
 	  // echo "<br>";
 	  // }
+	mysqli_close($con);
 	engine($result,'fb');
-	mysql_close($con);
-	header("Location: result.html");
+	
+	header("Location: result.php");
 	
   ?>

@@ -92,6 +92,10 @@
 			td{
 				padding:10px;
 			}
+			
+			#toresult{
+				margin-left: 300px;
+			}
 		</style>
 	</head>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -118,7 +122,7 @@
 	
 	      // Instantiate and draw our chart, passing in some options.
 	      var chart = new google.visualization.PieChart(document.getElementById('toresult'));
-	      chart.draw(data, {width: 400, height: 240});
+	      chart.draw(data, {width: 500, height: 340});
 	    }
 	    
 	    
@@ -153,19 +157,43 @@
 		</div>
 		<div class="maincontent">
 			<div>
-				<?php 
+				<?php
+				
 				session_start();
-				if($_SESSION['type']='spice'){
-					echo $_SESSION['type'].$_SESSION['message'];
+				if($_SESSION['type']=='spice'){
+						echo "
+						<div style=\"width:100%;text-align:center\">
+							<h1>Spice Analysis</h1>
+						</div>
+						<div>";
+					
+						echo $_SESSION['message'];
+						echo "</div>";
 				}
-				elseif($_SESSION['type']='fb'){	
-					echo $_SESSION['type'];
-				}elseif($_SESSION['type']='excel'){
-					echo $_SESSION['type'];
+				elseif($_SESSION['type']=='fb'){	
+					echo "
+						<div style=\"width:100%;text-align:center\">
+							<h1>Facebook Analysis</h1>
+						</div>
+						<div>";
+					echo " <H4>".$_SESSION['subject']."</H4>";
+					echo "</div>
+						<div>";
+						echo $_SESSION['message'];
+						echo "</div>";
+				}elseif($_SESSION['type']=='excel'){
+						echo "
+						<div style=\"width:100%;text-align:center\">
+							<h1>Excel Analysis</h1>
+						</div>";
+						
 				}
 				else{
-					echo $_SESSION['type'];				}
-				?> Analysis
+					echo "
+						<div style=\"width:100%;text-align:center\">
+							<h1>Twitter Analysis</h1>
+						</div>";				}
+				?> 
 				
 			</div>
 		<div style="text-align: center;">

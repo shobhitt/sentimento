@@ -66,15 +66,18 @@
 			{
 				if (type=='fb')
 				{
+					$(".databox").hide();
 					$(".datainput_tw").hide();
 					$(".datainput_ex").hide();
 					$(".datainput_sp").hide();
 					$(".datainput_fb").show();
+								
 				}
 				else
 				{
 					if (type=='tw')
 					{
+						$(".databox").hide();
 						$(".datainput_fb").hide();
 						$(".datainput_ex").hide();
 						$(".datainput_sp").hide();
@@ -84,6 +87,7 @@
 					{
 						if (type=='ex')
 						{
+							$(".databox").hide();
 							$(".datainput_fb").hide();
 							$(".datainput_tw").hide();
 							$(".datainput_sp").hide();
@@ -91,6 +95,7 @@
 						}
 						else
 						{
+							$(".databox").hide();
 							$(".datainput_fb").hide();
 							$(".datainput_tw").hide();
 							$(".datainput_ex").hide();
@@ -112,16 +117,16 @@
 		</div>
 		<div class="maincontent">
 			<div class="option">
-				<div class='icon' onclick="showinput('fb')">
+				<div class='icon' onclick="showinput('fb')" style=" cursor:hand">
 					<img src="facebook.png" />
 				</div>
-				<div class='icon' onclick="showinput('tw')">
+				<div class='icon' onclick="showinput('tw')" style=" cursor:hand">
 					<img src="twitter.png" />
 				</div>
-				<div class='icon' onclick="showinput('ex')">
+				<div class='icon' onclick="showinput('ex')" style=" cursor:hand">
 					<img src="excel.jpg" />
 				</div>
-				<div class='icon' onclick="showinput('sp')">
+				<div class='icon' onclick="showinput('sp')" style=" cursor:hand">
 					<img src="spice.jpg" />
 				</div>
 			</div>
@@ -176,6 +181,12 @@
 						<input type="submit" style="background: #222222;color:#aaaaaa;font-family:Helvetica;width: 100px;height: 30px;font-size: 16px;" />
 					</div>
 				</form>
+			</div>
+			<div class="databox" >
+				<div style="text-align: center;font-family:Verdana; padding: 10px;">
+					Click Icons to get Started.
+				</div> 
+				
 			</div>
 		</div>
 		<div class="footer">

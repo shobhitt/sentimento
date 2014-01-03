@@ -135,7 +135,7 @@
   	$id=$value['id'];
   	if(isset($value['message'])){
 		$message=$value['message'];
-	  echo "<table><tr><td><a href='getcomments.php?messageid=$id'> $message</a></td></tr>	";
+	  echo "<table><tr><td><a href='getcomments.php?messageid=$id' style='color:#303030'> $message</a></td></tr>	";
 	}
 
   }

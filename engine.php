@@ -4,7 +4,9 @@
 	
    function engine($data,$method){
 		 $sentiment = new Sentiment(); 
-		$con=mysqli_connect("mysqlsdb.co8hm2var4k9.eu-west-1.rds.amazonaws.com","dep2kkpyk4s","7isEkD3bRUFa","dep2kkpyk4s");
+	//	$con=mysqli_connect("localhost","root","","sentimento");
+		$con=mysqli_connect("ec2-23-21-211-172.compute-1.amazonaws.com","sentdb","sentdb","sentimento");
+		
 		if (mysqli_connect_errno())
 		  {
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -40,7 +42,6 @@
 			}elseif($method==='excel'){
 				$sql="INSERT INTO excel_output VALUES ('".$row['id']."','".addslashes($row['text'])."','".$ndate."','".$row['request_id']."',".$type.")";
 			}
-			echo $sql;
 			if (!mysqli_query($con,$sql))
 			  {
 			  	echo mysqli_error($con);

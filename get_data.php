@@ -2,13 +2,14 @@
 
 session_start();
 
-$con=mysqli_connect("mysqlsdb.co8hm2var4k9.eu-west-1.rds.amazonaws.com","dep2kkpyk4s","7isEkD3bRUFa","dep2kkpyk4s");
+$con=mysqli_connect("ec2-23-21-211-172.compute-1.amazonaws.com","sentdb","sentdb","sentimento");
 if (mysqli_connect_errno())
 {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 $request_id=$_SESSION['request_id'];
 $type=$_SESSION['type'];
+
 if($type==='excel'){
 	$result = mysqli_query($con,"SELECT * FROM excel_output where request_id='".$_SESSION['request_id']."';");	
 	$positive=0;
@@ -40,6 +41,7 @@ if($type==='excel'){
 		  	}
 	}
 }elseif($type==='fb'){
+		
 	$result = mysqli_query($con,"SELECT * FROM facebook_output where request_id='".$_SESSION['request_id']."';");	
 	$positive=0;
 	$negative=0;

@@ -5,7 +5,8 @@ require_once('engine.php');
 
 session_start();
 
-$con=mysqli_connect("localhost","root","","sentimento");
+//$con=mysqli_connect("localhost","root","","sentimento");
+$con=mysqli_connect("ec2-23-21-211-172.compute-1.amazonaws.com","sentdb","sentdb","sentimento");
 
 move_uploaded_file($_FILES["file"]["tmp_name"], $_FILES["file"]["name"] );
 $_SESSION['request_id']=generateId('rq');
@@ -24,7 +25,7 @@ try
 				if ($Row)
 					{
 				//var_dump($Row);
-					$text=$Row[0];
+					$text=addslashes($Row[0]);
 					$datearray=explode('-',$Row[1]);	
 					$date=intval(mktime(0,0,0,$datearray[0],$datearray[1],$datearray[2]));
 					$ndate=date('Y-m-d H:i:s',$date);

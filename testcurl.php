@@ -25,6 +25,7 @@
 			body{
 				margin: 0px;
 				padding: 0px;
+				color:#777777;
 			}
 			
 			.header{
@@ -58,7 +59,7 @@
 			}
 			.top{
 				padding: 20px;
-				font-size: 30px;
+				font-size: 25px;
 				font-family: Verdana;
 				text-align: center;
 				padding-top: 50px;
@@ -91,8 +92,8 @@
 			</div>
 		</div>
 		<div class="maincontent">
-			<div>
-				Spice Analysis
+			<div style="width:100%;text-align: center;">
+				<p style="font-size: 35px;padding-top:30px;">Spice Analysis</p>
 			</div>
 		<div style="text-align: center;">
 			
@@ -131,7 +132,7 @@
 			  				 // var_dump($comment->message->content);
 			  			// var_dump($comment->content);
 				 }
-				echo "</select><div><input type='submit' style='width:100px;height:35px;margin-top:10px;'/></div></form>";
+				echo "</select><div><input type='submit' style='background: #222222;color:#aaaaaa;font-family:Helvetica;width: 100px;height: 40px;font-size: 16px;margin-top:20px'/></div></form>";
 				
 				//print_r($xml->message[0]->content); 
 				// $_SESSION['xmltext']=$xml;
