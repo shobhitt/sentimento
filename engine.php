@@ -4,7 +4,7 @@
 	
    function engine($data,$method){
 		 $sentiment = new Sentiment(); 
-		$con=mysqli_connect("localhost","root","","sentimento");
+		$con=mysqli_connect("mysqlsdb.co8hm2var4k9.eu-west-1.rds.amazonaws.com","dep2kkpyk4s","7isEkD3bRUFa","dep2kkpyk4s");
 		if (mysqli_connect_errno())
 		  {
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -40,16 +40,17 @@
 			}elseif($method==='excel'){
 				$sql="INSERT INTO excel_output VALUES ('".$row['id']."','".addslashes($row['text'])."','".$ndate."','".$row['request_id']."',".$type.")";
 			}
-			
+			echo $sql;
 			if (!mysqli_query($con,$sql))
 			  {
+			  	echo mysqli_error($con);
 			  die('Error: ' . mysqli_error($con));
 			  }
 			  
 				
 	  }
 		//var_dump($data);
-		
+		mysqli_close($con);
    }
 
 
@@ -83,5 +84,5 @@ $rnd_id = substr($rnd_id,0,$random_id_length);
 		
 		return $id;
 	}
-	
+		
 ?>

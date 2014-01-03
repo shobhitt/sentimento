@@ -3,7 +3,7 @@
 	require_once('engine.php');
 	session_start();
 	
-	$con=mysqli_connect("localhost","root","","sentimento");
+	$con=mysqli_connect("mysqlsdb.co8hm2var4k9.eu-west-1.rds.amazonaws.com","dep2kkpyk4s","7isEkD3bRUFa","dep2kkpyk4s");
 	
 	
 	// Check connection
@@ -58,6 +58,7 @@
 	  // echo "<br>";
 	  // }
 	engine($result,'fb');
+	mysql_close($con);
 	header("Location: result.html");
 	
   ?>

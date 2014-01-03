@@ -4,7 +4,7 @@
     session_start();
 	$_SESSION['request_id']=generateId('rq');
 	$_SESSION['type']='spice';
-	$con=mysqli_connect("mysqlsdb.co8hm2var4k9.eu-west-1.rds.amazonaws.com:3306","dep2kkpyk4s","7isEkD3bRUFa","dep2kkpyk4s");
+	$con=mysqli_connect("mysqlsdb.co8hm2var4k9.eu-west-1.rds.amazonaws.com","dep2kkpyk4s","7isEkD3bRUFa","dep2kkpyk4s");
 	if (mysqli_connect_errno())
 	  {
 	  echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -51,11 +51,14 @@
 	 
 	//echo mysql_num_rows($result);
 	if(mysqli_affected_rows( $con )!=0){
+		mysqli_close($con);
 		engine($result,'spice');
-		header("Location: result.php");
+		
+		//header("Location: result.php");
 	}else{
 		echo "The message does not have any comments";
 	}
+	
 	
 	
 ?>

@@ -104,7 +104,7 @@
 	      
 	    // Set a callback to run when the Google Visualization API is loaded.
 	    google.setOnLoadCallback(drawChart);
-	    google.setOnLoadCallback(drawNewChart);
+	   // google.setOnLoadCallback(drawNewChart);
 	      
 	    function drawChart() {
 	      var jsonData = $.ajax({

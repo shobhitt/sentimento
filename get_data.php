@@ -2,12 +2,11 @@
 
 session_start();
 
-$con=mysqli_connect("localhost","root","","sentimento");
+$con=mysqli_connect("mysqlsdb.co8hm2var4k9.eu-west-1.rds.amazonaws.com","dep2kkpyk4s","7isEkD3bRUFa","dep2kkpyk4s");
 if (mysqli_connect_errno())
 {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
-
 $request_id=$_SESSION['request_id'];
 $type=$_SESSION['type'];
 if($type==='excel'){
@@ -61,7 +60,7 @@ if($type==='excel'){
 	$negative=0;
 	$neutral=0;
 	while($row = mysqli_fetch_array($result))
-	{
+	{		
 		  	if($row['sentiment']==2){
 		  		$positive=$positive+1+$row['like_count'];
 		  	}elseif($row['sentiment']==0){
@@ -95,6 +94,7 @@ if($type==='excel'){
 	$cols=array($col1,$col2);
 	$rows=array($row1,$row2,$row3);
 	$data=array("cols"=>$cols,"rows"=>$rows);
+	mysqli_close($con);
 	
 	echo json_encode($data);
 	//vardump(data);
