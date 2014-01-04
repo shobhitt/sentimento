@@ -1,3 +1,12 @@
+<html>
+<head>
+<script type="text/javascript">
+<!--
+window.location = "result.php"
+//-->
+</script>
+</head>
+<body>
 <?php
 require('php-excel-reader/excel_reader2.php');
 require('SpreadsheetReader.php');
@@ -51,7 +60,9 @@ try
 		echo $E -> getMessage();
 }
 
-header("Location: http://sentimento.cloudcontrolled.com/result.php");
+//header("Location: http://sentimento.cloudcontrolled.com/result.php");
 
 
 ?>
+</body>
+</html>
