@@ -91,6 +91,13 @@
 				padding:10px;
 			}
 		</style>
+
+<script type="text/javascript">
+<!--
+window.location = "result.php"
+//-->
+</script>
+
 	</head>
 	<body>
 		
@@ -166,7 +173,7 @@
 	 if(mysqli_affected_rows( $con )!=0){
 		mysqli_close($con);
 		engine($result,'fb');
-		header("Location: http://sentimento.cloudcontrolled.com/result.php");
+	//	header("Location: http://sentimento.cloudcontrolled.com/result.php");
 	}else{
 		echo "The post does not have any comments";
 	}
