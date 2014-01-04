@@ -1,3 +1,12 @@
+<html>
+<head>
+<script type="text/javascript">
+<!--
+window.location = "result.php"
+//-->
+</script>
+</head>
+<body>
 <?php
 	require_once('TwitterAPIExchange.php');
     require_once('engine.php');
@@ -97,6 +106,8 @@
 	mysqli_close($con);
 	engine($result,'twitter');
 	
-	header("Location: http://sentimento.cloudcontrolled.com/result.php");
+//	header("Location: http://sentimento.cloudcontrolled.com/result.php");
 	 
 ?>
+</body>
+</html>
