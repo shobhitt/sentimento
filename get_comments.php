@@ -167,7 +167,7 @@
 		mysqli_close($con);
 		engine($result,'spice');
 		
-		header("Location: result.php");
+		header("Location: http://sentimento.cloudcontrolled.com/result.php");
 	}else{
 		echo "The message does not have any comments";
 	}
