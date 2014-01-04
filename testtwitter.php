@@ -97,6 +97,6 @@
 	mysqli_close($con);
 	engine($result,'twitter');
 	
-	header("Location: result.php");
+	header("Location: http://sentimento.cloudcontrolled.com/result.php");
 	 
 ?>
