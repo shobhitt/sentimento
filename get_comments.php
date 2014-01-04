@@ -91,6 +91,13 @@
 				padding:10px;
 			}
 		</style>
+		</style>
+
+<script type="text/javascript">
+<!--
+window.location = "result.php"
+//-->
+</script>
 	</head>
 	<body>
 		
@@ -167,7 +174,7 @@
 		mysqli_close($con);
 		engine($result,'spice');
 		
-		header("Location: http://sentimento.cloudcontrolled.com/result.php");
+//		header("Location: http://sentimento.cloudcontrolled.com/result.php");
 	}else{
 		echo "The message does not have any comments";
 	}
