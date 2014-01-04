@@ -166,7 +166,7 @@
 	 if(mysqli_affected_rows( $con )!=0){
 		mysqli_close($con);
 		engine($result,'fb');
-		header("Location: result.php");
+		header("Location: http://sentimento.cloudcontrolled.com/result.php");
 	}else{
 		echo "The post does not have any comments";
 	}
