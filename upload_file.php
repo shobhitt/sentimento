@@ -51,7 +51,7 @@ try
 		echo $E -> getMessage();
 }
 
-header("Location: result.php");
+header("Location: http://sentimento.cloudcontrolled.com/result.php");
 
 
 ?>
