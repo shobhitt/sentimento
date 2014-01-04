@@ -125,8 +125,15 @@
 	session_start();
 	
 	$ch = curl_init();
-    $id=$_POST['subject'];
+	if(isset($_POST['subject'])){
+    	$id=$_POST['subject'];
+		$_SESSION['sub']=$id;
+    }
+	else{
+		$id=$_SESSION['sub'];
+	}
 	$userId=$_SESSION['sesa'];
+	
 
 	curl_setopt($ch, CURLOPT_URL,'http://spice.schneider-electric.com/a/users/'.$userId.'/subject_messages.xml?params[subject_id]='.$id.'&client_key=tibco&auth_token=o1WCdbfst8IFWUBq5sXeM6ENokN9JTeYgar/tH1KKqE=');
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);

@@ -23,6 +23,12 @@
 			   text-align: center;
 			   font-family:"Arial Rounded MT Bold" ;
 			}
+			
+			.data{
+				border: solid #aaaaaa 1px;
+				box-shadow: 2px 2px 2px 2px #f5f5f5;
+				padding: 25px;
+			}
 
 			body{
 				margin: 0px;
@@ -165,6 +171,7 @@
 						<div style=\"width:100%;text-align:center\">
 							<h1>Spice Analysis</h1>
 						</div>
+						<div class='data'>
 						<div>";
 					
 						echo $_SESSION['message'];
@@ -175,30 +182,38 @@
 						<div style=\"width:100%;text-align:center\">
 							<h1>Facebook Analysis</h1>
 						</div>
+						<div class='data'>
 						<div>";
-					echo " <H4>".$_SESSION['subject']."</H4>";
+					echo " <p style='font-size: 25;color: #aaaaaa;'>".$_SESSION['subject']."</p>";
 					echo "</div>
 						<div>";
-						echo $_SESSION['message'];
+						echo "<p style='font-size: 17;'>".$_SESSION['message']."</p>";
 						echo "</div>";
 				}elseif($_SESSION['type']=='excel'){
 						echo "
 						<div style=\"width:100%;text-align:center\">
 							<h1>Excel Analysis</h1>
-						</div>";
+						</div>
+						<div class='data'>";
 						
 				}
 				else{
 					echo "
 						<div style=\"width:100%;text-align:center\">
 							<h1>Twitter Analysis</h1>
-						</div>";				}
+						</div>
+						<div class='data'>
+						<div>";
+						//echo "<p style='font-size: 25;color: #aaaaaa;'>Ramdev</p></div>";
+						echo "<p style='font-size: 25;color: #aaaaaa;'>".$_SESSION['search']."</p>";
+					}
 				?> 
 				
-			</div>
+			
 		<div style="text-align: center;">
 		<div id="toresult">
 			
+		</div>
 		</div>
 		<div id="timeline">
 			

@@ -122,7 +122,13 @@
   );
 
   $facebook = new Facebook($config);
-  $page=$_GET['page'];
+  if(isset($_GET['page'])){
+  	  $page=$_GET['page'];
+  			$_SESSION['page']=$page;
+  }
+  else {
+  	$page=$_SESSION['page'];
+  }
  // $api="".$page. "?fields=feed.limit(100).fields(message)";
   $ret = $facebook->api($page.'?fields=feed.limit(100).fields(message),name');
   $_SESSION['subject']=(string)$ret['name'];

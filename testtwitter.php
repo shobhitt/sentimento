@@ -23,12 +23,14 @@
 		echo "connected";
 	}
 	$search=$_GET['search'];
+	$_SESSION['search']=$search;
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
 	$getfield = '?q='.$search.'&result_type=mixed&count=100';
 	$requestMethod = 'GET';
 	$twitter = new TwitterAPIExchange($settings);
 	
 	$data=json_decode($twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest(),true);
+	var_dump($data);
 	//$data=$twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();
 //	var_dump($data);
 	//	$data=$twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();
